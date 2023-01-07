@@ -204,7 +204,7 @@
     const outputField = document.getElementById("output-field");
 
     // Create list to store the data for all entries
-    data_list = []
+    var rules = [];
 
     // add an event listener to the submit button that listens for a click event
     addRule.addEventListener("click", function () {
@@ -273,10 +273,10 @@
         shopTypeEntry.value = "0";
 
         //Add data to the data list
-        data_list.push(data);
+        rules.push(data);
 
         // Format data list as JSON and add it to the output field
-        outputField.innerHTML = JSON.stringify(data_list, null, 2);
+        outputField.innerHTML = JSON.stringify(rules, null, 2);
       });
   </script>
 
