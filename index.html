@@ -1,0 +1,283 @@
+<!-- index.html -->
+<!-- A web app to create filter rules in JSON format -->
+
+<html>
+
+  <!-- CSS -->
+  <head>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      * {
+          font-family: 'Roboto Mono', monospace;
+      }
+      .container {
+          padding: 0 10%;
+      }
+      .form-group {
+          padding-top: 20px;
+      }
+      p {
+          font-size: .8em;
+      }
+    </style>
+  </head>
+
+  <!-- HTML -->
+  <body>
+    <!-- array type -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <h1 class="text-center">Filter GUI</h1>
+        </div>  
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="character-entry"
+            placeholder="Character(s)" 
+          />
+        </div>
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="item-entry"
+            placeholder="Item(s)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="blessing-entry"
+            placeholder="Blessing(s)"
+          />
+        </div>
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="perk-entry"
+            placeholder="Perk(s)"
+          />
+        </div>  
+      </div>
+    </div>
+    <!-- divider -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>To enter multiple values, separate them with a comma, E.g. "vetaren, zealot, psyker".</p>
+          <hr>
+        </div>  
+      </div>
+    </div>
+    <!-- numeric type -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="minStats-entry"
+            placeholder="Min. stats"
+          />
+        </div>
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="minRating-entry"
+            placeholder="Min. rating"
+          />
+        </div>  
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="minBlessingRarity-entry"
+            placeholder="Min. blessing rarity (1-4)"
+          />
+        </div>
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="minPerkRarity-entry"
+            placeholder="Min. perk rarity (1-4)"
+          />
+        </div>  
+      </div>
+    </div>
+    <!-- divider -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>Only single integer values are allowed, E.g. "380".</p>
+          <hr>
+        </div>  
+      </div>
+    </div>
+    <!-- string type -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <select class="form-control" id="shopType-entry">
+              <option value="0">Shop type (all)</option>
+              <option value="credits">Armoury Exchange (credits)</option>
+              <option value="marks">Sire Melk's Requisitorium (marks)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- divider -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>Pick one or leave as default (all).</p>
+          <hr>
+        </div>  
+      </div>
+    </div>
+    <!-- text box to store output -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <textarea
+            class="form-control"
+            id="output-field"
+            rows="5"
+            placeholder="Output"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <!--'Add rule' button -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center form-group">
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="add-rule"
+          >
+            Add rule
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- JavaScript -->
+  <script>
+    // get a reference to the input field, submit button, and output field
+    const charEntry = document.getElementById("character-entry");
+    const itemEntry = document.getElementById("item-entry");
+    const blessingEntry = document.getElementById("blessing-entry");
+    const perkEntry = document.getElementById("perk-entry");
+    const minStatsEntry = document.getElementById("minStats-entry");
+    const minRatingEntry = document.getElementById("minRating-entry");
+    const minBlessingRarityEntry = document.getElementById("minBlessingRarity-entry");
+    const minPerkRarityEntry = document.getElementById("minPerkRarity-entry");
+    const shopTypeEntry = document.getElementById("shopType-entry");
+    const addRule = document.getElementById("add-rule");
+    const outputField = document.getElementById("output-field");
+
+    // Create list to store the data for all entries
+    data_list = []
+
+    // add an event listener to the submit button that listens for a click event
+    addRule.addEventListener("click", function () {
+        // Create data dictionary
+        var data = {}
+
+        // Get values from the textboxes and add them to the dictionary if they are not empty
+        // 
+        if (charEntry.value != "") {
+        values = charEntry.value.split(", ");
+        if (values.length > 1) {
+            data["character"] = values;
+        } else {
+            data["character"] = charEntry.value;
+        }
+        }
+        if (itemEntry.value != "") {
+        values = itemEntry.value.split(", ");
+        if (values.length > 1) {
+            data["item"] = values;
+        } else {
+            data["item"] = itemEntry.value;
+        }
+        }
+        if (blessingEntry.value != "") {
+        values = blessingEntry.value.split(", ");
+        if (values.length > 1) {
+            data["blessing"] = values;
+        } else {
+            data["blessing"] = blessingEntry.value;
+        }
+        }
+        if (perkEntry.value != "") {
+        values = perkEntry.value.split(", ");
+        if (values.length > 1) {
+            data["perk"] = values;
+        } else {
+            data["perk"] = perkEntry.value;
+        }
+        }
+        if (minStatsEntry.value != "") {
+        data["minStats"] = minStatsEntry.value;
+        }
+        if (minRatingEntry.value != "") {
+        data["minRating"] = minRatingEntry.value;
+        }
+        if (minBlessingRarityEntry.value != "") {
+        data["minBlessingRarity"] = minBlessingRarityEntry.value;
+        }
+        if (minPerkRarityEntry.value != "") {
+        data["minPerkRarity"] = minPerkRarityEntry.value;
+        }
+        if (shopTypeEntry.value != "0") {
+        data["shopType"] = shopTypeEntry.value;
+        }
+
+        // Clear contents of the entry fields
+        charEntry.value = "";
+        itemEntry.value = "";
+        blessingEntry.value = "";
+        perkEntry.value = "";
+        minStatsEntry.value = "";
+        minRatingEntry.value = "";
+        minBlessingRarityEntry.value = "";
+        minPerkRarityEntry.value = "";
+        shopTypeEntry.value = "0";
+
+        //Add data to the data list
+        data_list.push(data);
+
+        // Format data list as JSON and add it to the output field
+        outputField.innerHTML = JSON.stringify(data_list, null, 2);
+      });
+  </script>
+
+</html>
