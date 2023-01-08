@@ -13,7 +13,7 @@ const dataFields = [
     "minRating",
     "minBlessingRarity",
     "minPerkRarity",
-    "shop"
+    "store"
 ];
 
 var rules = [];
@@ -66,7 +66,7 @@ function export_rules() {
         alert("You must add at least one rule before you can export");
         return;
     }
-    
+
     // Get contents of the text widget
     var text = outputField.innerHTML;
     // Create a new blob with the contents of the output field
