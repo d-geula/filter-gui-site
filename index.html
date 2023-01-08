@@ -1,18 +1,12 @@
-<!-- index.html -->
-<!-- A web app to create filter rules in JSON format -->
-
 <html>
-
-  <!-- CSS -->
   <head>
-    <!-- Bootstrap CSS -->
+    <!-- bootstrap -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-
     <style>
       * {
           font-family: 'Roboto Mono', monospace;
@@ -28,8 +22,6 @@
       }
     </style>
   </head>
-
-  <!-- HTML -->
   <body>
     <!-- array type -->
     <div class="container">
@@ -83,7 +75,7 @@
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <p>multiple values need to be separated by a comma, E.g. "vetaren, zealot". <a href=https://github.com/danreeves/dt-exchange/blob/main/docs/rule-based-filtering.md#array-based target="_blank">More info</a></p>
+          <p>Multiple values need to be separated by a comma, E.g. "vetaren, zealot". <a href=https://github.com/danreeves/dt-exchange/blob/main/docs/rule-based-filtering.md#array-based target="_blank">More info</a></p>
           <hr>
         </div>  
       </div>
@@ -159,7 +151,7 @@
         </div>  
       </div>
     </div>
-    <!-- text box to store output -->
+    <!-- output -->
     <div class="container">
       <div class="row">
         <div class="col text-center form-group">
@@ -200,9 +192,8 @@
         </div>
       </div>
     </div>
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <script src="index.js"></script>
   </body>
-
-  <!-- JavaScript -->
-  <script src="index.js"></script>
-
 </html>
