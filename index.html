@@ -1,5 +1,7 @@
 <html>
+
   <head>
+
     <!-- bootstrap -->
     <link
       rel="stylesheet"
@@ -7,31 +9,41 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+
     <style>
-      * {
+
+      body {
           font-family: 'Roboto Mono', monospace;
       }
+      
       .container {
-          padding: 0 10%;
+          padding-left: 10%;
+          padding-right: 10%;
       }
+
       .form-group {
-          padding-top: 20px;
+          padding-top: 10px;
       }
+
       p {
-          font-size: .8em;
+          font-size: small
       }
+
     </style>
+
   </head>
+
   <body>
-    <!-- array type -->
-    <div class="container">
+
+    <div class="container form-group">
+
       <div class="row">
         <div class="col text-center form-group">
-          <h2 class="text-center">Filter GUI</h2>
+          <h2>Filter GUI</h2>
         </div>  
       </div>
-    </div>
-    <div class="container">
+
+      <!-- array type -->
       <div class="row">
         <div class="col text-center form-group">
           <input
@@ -44,14 +56,13 @@
         <div class="col text-center form-group">
           <input
             type="text"
-            class="form-control"
+            class="form-control input-border-radius"
             id="item"
             placeholder="Item(s)"
           />
         </div>
       </div>
-    </div>
-    <div class="container">
+
       <div class="row">
         <div class="col text-center form-group">
           <input
@@ -70,18 +81,16 @@
           />
         </div>  
       </div>
-    </div>
-    <!-- divider -->
-    <div class="container">
+
+      <!-- divider -->
       <div class="row">
         <div class="col text-center">
           <p>Multiple values need to be separated by a comma, E.g. "vetaren, zealot". <a href=https://github.com/danreeves/dt-exchange/blob/main/docs/rule-based-filtering.md#array-based target="_blank">More info</a></p>
           <hr>
         </div>  
       </div>
-    </div>
-    <!-- numeric type -->
-    <div class="container">
+
+      <!-- numeric type -->
       <div class="row">
         <div class="col text-center form-group">
           <input
@@ -100,8 +109,7 @@
           />
         </div>  
       </div>
-    </div>
-    <div class="container">
+
       <div class="row">
         <div class="col text-center form-group">
           <input
@@ -120,18 +128,35 @@
           />
         </div>  
       </div>
-    </div>
-    <!-- divider -->
-    <div class="container">
+
+      <div class="row">
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="minBlessingRarity"
+            placeholder="Min. blessing rarity (1-4)"
+          />
+        </div>
+        <div class="col text-center form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="minPerkRarity"
+            placeholder="Min. perk rarity (1-4)"
+          />
+        </div>  
+      </div>
+
+      <!-- divider -->
       <div class="row">
         <div class="col text-center">
           <p>Single numeric value, E.g. "380", "4". <a href=https://github.com/danreeves/dt-exchange/blob/main/docs/rule-based-filtering.md#numeric target="_blank">More info</a></p>
           <hr>
         </div>  
       </div>
-    </div>
-    <!-- string type -->
-    <div class="container">
+
+      <!-- string type -->
       <div class="row">
         <div class="col text-center form-group">
           <select class="form-control" id="store">
@@ -141,18 +166,16 @@
           </select>
         </div>
       </div>
-    </div>
-    <!-- divider -->
-    <div class="container">
+
+      <!-- divider -->
       <div class="row">
         <div class="col text-center">
           <p>Default is both. For specific store type select from dropdown.</p>
           <hr>
         </div>  
       </div>
-    </div>
-    <!-- output -->
-    <div class="container">
+
+      <!-- output -->
       <div class="row">
         <div class="col text-center form-group">
           <textarea
@@ -163,9 +186,8 @@
           ></textarea>
         </div>
       </div>
-    </div>
-    <!-- buttons -->
-    <div class="container">
+
+      <!-- buttons -->
       <div class="row">
         <div class="col text-center form-group">
           <button
@@ -191,9 +213,13 @@
           </button>
         </div>
       </div>
+
     </div>
+
     <!-- scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script src="index.js"></script>
+    
   </body>
+
 </html>
