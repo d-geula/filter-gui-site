@@ -13,7 +13,8 @@ const dataFields = [
     "minRating",
     "minBlessingRarity",
     "minPerkRarity",
-    "store"
+    "store",
+    "type"
 ];
 
 var rules = [];
