@@ -1,3 +1,6 @@
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 const outputField = document.getElementById("output-field");
 const addRule = document.getElementById("add-rule");
 const resetRules = document.getElementById("reset-rules");
