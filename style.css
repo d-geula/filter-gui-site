@@ -1,0 +1,80 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  background-color: rgb(30, 30, 30);
+  color: white;
+}
+
+p {
+  font-size: 0.8em;
+}
+
+hr {
+  border-style: dotted;
+}
+
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-secondary);
+  opacity: 1 !important;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.7em;
+}
+
+.form-control {
+  /* border-radius: .3em; */
+  font-size: 0.8em;
+  /* border-width: 2px; */
+}
+
+.form-label {
+  font-size: 0.7em;
+}
+
+.form-floating {
+  color: black;
+  font-size: 0.9em;
+}
+
+.btn-primary, .btn-secondary {
+  font-size: 0.8em;
+}
+
+.modal {
+  color: black;
+}
+
+.popover {
+  white-space: pre-line;    
+}
+
+.custom-popover {
+  font-family: "Roboto Mono", monospace;
+  color: black;
+  font-size: 0.8em;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  border: none;
+}
+
+/* textarea::-webkit-scrollbar {
+  width: 0.7em;
+  background-color: rgb(233, 236, 239);
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(92, 99, 106);
+  border-radius: 10px;
+} */
+
