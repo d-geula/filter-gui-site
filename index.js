@@ -83,11 +83,12 @@ function add_rules() {
 }
 
 function reset_rules() {
-  // Ask for confirmation
-  if (confirm("This will clear all rules. Are you sure?")) {
-    // Clear contents of the entry fields
-    for (var i = 0; i < dataFields.length; i++) {
-      document.getElementById(dataFields[i]).value = "";
+  if (outputField.innerHTML) {
+    if (confirm("This will clear all rules. Are you sure?")) {
+      // Clear contents of the entry fields
+      for (var i = 0; i < dataFields.length; i++) {
+        document.getElementById(dataFields[i]).value = "";
+      }
     }
     // Clear the rules list
     rules = [];
@@ -109,13 +110,16 @@ function import_rules() {
   }
 
   // Add the JSON to the rules list
-  rules = json;
-  if (confirm("This will overwrite any existing rules. Are you sure?")) {
-    outputField.innerHTML = "";
-    outputField.innerHTML = JSON.stringify(rules, null, 4);
-    modal.hide();
-    importField.value = "";
-  }
+  rulesNew = json;
+  // merge imported rules with existing rules
+  rules = rules.concat(rulesNew);
+
+  // Add the content of the rules list to the output field
+  outputField.innerHTML = JSON.stringify(rules, null, 4);
+
+  // Clear the import field
+  modal.hide();
+  importField.value = "";
 }
 
 function export_rules() {
